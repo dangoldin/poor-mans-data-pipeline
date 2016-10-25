@@ -3,6 +3,7 @@
 import os
 import sys
 import io
+import csv
 from operator import itemgetter
 from collections import Counter
 
@@ -33,6 +34,12 @@ def process_directory(d):
 
     return summary
 
+def write_to_csv(fn, headers, data):
+    with open(fn, 'w') as f:
+        w = csv.writer(f)
+        w.writerow(headers + ['cnt',])
+        w.writerows([i + (cnt,) for i, cnt in data.iteritems()])
+
 if __name__ == '__main__':
     if len(sys.argv) < 2:
         print 'Specify a file or directory'
@@ -46,3 +53,9 @@ if __name__ == '__main__':
         out = process_file(fn)
 
     print out
+
+    out_fn = 'out.csv'
+    if len(sys.argv) == 3:
+        out_fn = sys.argv[2]
+
+    write_to_csv(out_fn, ['date', 'path'], out)
