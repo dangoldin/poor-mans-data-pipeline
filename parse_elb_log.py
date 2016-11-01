@@ -10,28 +10,35 @@ from collections import Counter
 # TODOs: Parse ip, user agent
 
 def parse_line(line):
-    dt, path = itemgetter(0,12)(line.split(' '))
-    dt = dt[:10] # Just the ymd
-    path = path.split('/')[-1] # Ignore the host
-    return (dt, path)
+    try:
+        dt, path = itemgetter(0,12)(line.split(' '))
+        dt = dt[:10] # Just the ymd
+        path = path.split('/')[-1] # Ignore the host
+        return (dt, path)
+    except Exception as e:
+        print('Failed to handle line', line)
+        return ('','')
+
+def process_string(s):
+    summary = Counter()
+    for line in s.split("\n"):
+        if line:
+            summary[parse_line(line)] += 1
+    return summary
 
 def process_file(fn):
     summary = Counter()
-
     with io.open(fn, 'r') as f:
         for line in f:
             summary[parse_line(line)] += 1
-
     return summary
 
 def process_directory(d):
     summary = Counter()
-
     for f in os.listdir(d):
         fn = os.path.join(d, f)
         if os.path.isfile(fn):
             summary += process_file(fn)
-
     return summary
 
 def write_to_csv(fn, headers, data):
