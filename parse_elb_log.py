@@ -4,33 +4,25 @@ import os
 import sys
 import io
 import csv
-from operator import itemgetter
 from collections import Counter
+
+from parser import DatePathLogLineParser
 
 # TODOs: Parse ip, user agent
 
-def parse_line(line):
-    try:
-        dt, path = itemgetter(0,12)(line.split(' '))
-        dt = dt[:10] # Just the ymd
-        path = path.split('/')[-1] # Ignore the host
-        return (dt, path)
-    except Exception as e:
-        print('Failed to handle line', line)
-        return ('','')
+dpllp = DatePathLogLineParser()
 
 def process_string(s):
     summary = Counter()
-    for line in s.split("\n"):
-        if line:
-            summary[parse_line(line)] += 1
+    for line in s.strip().split("\n"):
+        summary[dpllp.parse_line(line)] += 1
     return summary
 
 def process_file(fn):
     summary = Counter()
     with io.open(fn, 'r') as f:
         for line in f:
-            summary[parse_line(line)] += 1
+            summary[dpllp.parse_line(line)] += 1
     return summary
 
 def process_directory(d):
