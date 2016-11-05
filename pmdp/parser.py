@@ -1,4 +1,4 @@
-#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 from abc import ABCMeta, abstractmethod
 from operator import itemgetter

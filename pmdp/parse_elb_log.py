@@ -1,4 +1,4 @@
-#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 import os
 import sys
@@ -6,7 +6,7 @@ import io
 import csv
 from collections import Counter
 
-from parser import DatePathLogLineParser
+from .parser import DatePathLogLineParser
 
 # TODOs: Parse ip, user agent
 

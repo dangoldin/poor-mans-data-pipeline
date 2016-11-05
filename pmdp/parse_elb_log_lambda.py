@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from __future__ import print_function
 
 import json
@@ -12,8 +14,8 @@ import json
 from operator import itemgetter
 from collections import Counter
 
-from parse_elb_log import process_string
-from writer import S3CSVFileWriter
+from .parse_elb_log import process_string
+from .writer import S3CSVFileWriter
 
 print('Loading function')
 
