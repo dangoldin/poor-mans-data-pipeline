@@ -11,7 +11,7 @@ The idea here is to leverage Amazon's Elastic Load Balancer configuration option
 You will need to do two things.
 
 1. Set up an Elastic Load Balancer and enable access logging. Note that you don't need to connect any instances to it since it will still be able to log every request. Note that responses to the ELB will have a 503 status code.
-![alt text](https://github.com/dangoldin/poor-mans-data-pipeline/raw/master/src/img/pmdp-elb.png "PMDP ELB setup")
+![alt text](https://github.com/dangoldin/poor-mans-data-pipeline/raw/master/img/pmdp-elb.png "PMDP ELB setup")
 
 2. Set up an AWS Lambda function to parse the resulting access logs. The default code will do a simple count grouped by date and path and then upload them back to the original bucket. You can set up AWS Lambda by creating a zip archive and setting it up in the AWS console.
 
@@ -19,4 +19,4 @@ You will need to do two things.
 zip lambda.zip *py pmdp/*py
 ```
 
-![alt text](https://github.com/dangoldin/poor-mans-data-pipeline/raw/master/src/img/pmdp-lambda.png "PMDP Lambda setup")
+![alt text](https://github.com/dangoldin/poor-mans-data-pipeline/raw/master/img/pmdp-lambda.png "PMDP Lambda setup")
