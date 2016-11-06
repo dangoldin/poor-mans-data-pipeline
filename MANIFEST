@@ -2,7 +2,5 @@
 setup.cfg
 setup.py
 pmdp/__init__.py
-pmdp/parse_elb_log.py
-pmdp/parse_elb_log_lambda.py
 pmdp/parser.py
 pmdp/writer.py

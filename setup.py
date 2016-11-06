@@ -4,7 +4,7 @@ from distutils.core import setup
 setup(
   name = 'pmdp',
   packages = ['pmdp'],
-  version = '0.1',
+  version = '0.2',
   description = 'A poor man\'s data pipeline',
   author = 'Dan Goldin',
   author_email = 'dangoldin@gmail.com',
