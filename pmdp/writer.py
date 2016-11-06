@@ -18,8 +18,9 @@ class CSVFileWriter(SummaryWriter):
     def write_summary(self, summary):
         with open(self.fn, 'w') as f:
             w = csv.writer(f)
-            w.writerow(headers + ['cnt',])
-            w.writerows([i + (cnt,) for i, cnt in data.iteritems()])
+            # TODO: Figure out header
+            # w.writerow(headers + ['cnt',])
+            w.writerows([i + (cnt,) for i, cnt in summary.iteritems()])
 
 class S3CSVFileWriter(SummaryWriter):
     def __init__(self, bucket, key):

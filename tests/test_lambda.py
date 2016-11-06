@@ -4,7 +4,7 @@ import unittest
 
 import json
 
-from pmdp.parse_elb_log_lambda import lambda_handler
+from parse_elb_log_lambda import lambda_handler
 
 class TestLambdaFunction(unittest.TestCase):
 
