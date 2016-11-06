@@ -90,3 +90,6 @@ ENV/
 
 # Temp files
 *~
+
+# Lambda archive
+*zip
