@@ -12,6 +12,8 @@ import io
 import csv
 import json
 from operator import itemgetter
+import datetime
+import uuid
 
 from pmdp.parser import DatePathLogLineParser, S3Parser
 from pmdp.writer import S3CSVFileWriter
@@ -27,7 +29,8 @@ def lambda_handler(event, context):
         sp = S3Parser(lp, bucket, key)
         summary = sp.parse()
         print(summary)
-        writer = S3CSVFileWriter(bucket, 'TEST')
+        out_path = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        writer = S3CSVFileWriter(bucket, out_path + '/' + str(uuid.uuid4()))
         writer.write_summary(summary)
         return {'success': True}
     except Exception as e:

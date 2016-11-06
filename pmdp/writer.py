@@ -33,4 +33,5 @@ class S3CSVFileWriter(SummaryWriter):
         w = csv.writer(output)
         for k, v in summary.iteritems():
             w.writerow(k + (v,))
+        print 'Wrtiing to',self.bucket,self.key
         self.s3.put_object(Bucket=self.bucket, Key=self.key, Body=output.getvalue())
