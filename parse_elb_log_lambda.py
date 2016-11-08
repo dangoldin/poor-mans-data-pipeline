@@ -15,8 +15,9 @@ from operator import itemgetter
 import datetime
 import uuid
 
-from pmdp.parser import DatePathLogLineParser, S3Parser
-from pmdp.writer import S3CSVFileWriter
+from pmdp.parser.line_parser import DatePathLogLineParser
+from pmdp.parser.file_parser import S3Parser
+from pmdp.writer.s3_csv_writer import S3CSVFileWriter
 
 print('Loading function')
 

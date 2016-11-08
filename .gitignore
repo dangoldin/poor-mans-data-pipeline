@@ -93,3 +93,6 @@ ENV/
 
 # Lambda archive
 *zip
+
+# OS X files
+.DS_Store

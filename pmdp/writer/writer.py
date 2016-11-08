@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 
-from abc import ABCMeta, abstractmethod
 import csv
 import io
 import boto3
 
-class SummaryWriter:
+from abc import ABCMeta, abstractmethod
+
+class BaseSummaryWriter:
     __metaclass__  = ABCMeta
 
     @abstractmethod
     def write_summary(self, summary): pass
 
-class CSVFileWriter(SummaryWriter):
+class CSVFileWriter(BaseSummaryWriter):
     def __init__(self, fn):
         self.fn = fn
 
@@ -22,7 +23,7 @@ class CSVFileWriter(SummaryWriter):
             # w.writerow(headers + ['cnt',])
             w.writerows([i + (cnt,) for i, cnt in summary.iteritems()])
 
-class S3CSVFileWriter(SummaryWriter):
+class S3CSVFileWriter(BaseSummaryWriter):
     def __init__(self, bucket, key):
         self.bucket = bucket
         self.key = key
