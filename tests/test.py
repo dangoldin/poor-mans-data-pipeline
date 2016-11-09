@@ -3,14 +3,17 @@
 import unittest
 
 import json
+import os
 
-from parse_elb_log_lambda import lambda_handler
+from pmdp.parse_elb_log_lambda import lambda_handler
 from pmdp.parser.line_parser import DatePathLogLineParser
 
 class TestLambdaFunction(unittest.TestCase):
     # Valid end to end
     def test_valid_lambda_parse(self):
-        with open('test-s3-put.json', 'r') as f:
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+
+        with open(os.path.join(dir_path, 'test-s3-put.json'), 'r') as f:
             d = json.loads(f.read())
             out = lambda_handler(d, None)
             self.assertTrue(out['success'])

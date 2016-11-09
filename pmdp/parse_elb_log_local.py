@@ -3,9 +3,9 @@
 import os
 import sys
 
-from pmdp.parser.line_parser import DatePathLogLineParser
-from pmdp.parser.file_parser import FileParser, DirectoryParser
-from pmdp.writer.csv_writer import CSVFileWriter
+from parser.line_parser import DatePathLogLineParser
+from parser.file_parser import FileParser, DirectoryParser
+from writer.csv_writer import CSVFileWriter
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
