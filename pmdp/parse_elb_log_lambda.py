@@ -15,6 +15,8 @@ from operator import itemgetter
 import datetime
 import uuid
 
+print('Loading libraries')
+
 from parser.line_parser import DatePathLogLineParser
 from parser.file_parser import S3Parser
 from writer.s3_csv_writer import S3CSVFileWriter

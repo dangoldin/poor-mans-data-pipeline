@@ -8,3 +8,6 @@ __copyright__ = 'Copyright 2016 Dan Goldin'
 
 from . import parser
 from . import writer
+
+from . import parse_elb_log_local
+from . import parse_elb_log_lambda
