@@ -12,9 +12,14 @@ class LogLineParser:
     def parse_line(self, line): pass
 
 class DatePathLogLineParser(LogLineParser):
+    def parse_ymd(self, dt_str):
+        return dt[:10] # Just the ymd
+
+    def parse_path(self, p):
+        return path.split('/')[-1] # Ignore the host
+
     def parse_line(self, line):
         dt, path = itemgetter(0,12)(line.split(' '))
-        dt = dt[:10] # Just the ymd
-        path = path.split('/')[-1] # Ignore the host
+        dt = self.parse_ymd(dt)
+        path = self.parse_path(path)
         return (dt, path)
-
