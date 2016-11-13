@@ -6,12 +6,24 @@ from operator import itemgetter
 # TODO: Parse ip, user agent
 
 class LogLineParser:
+    """
+    LogLineParser is the abstract class that handles parsing individal
+    rows in the AWS ELB log file format.
+
+    http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html
+    """
+
     __metaclass__  = ABCMeta
 
     @abstractmethod
     def parse_line(self, line): pass
 
 class DatePathLogLineParser(LogLineParser):
+    """
+    DatePathLogLineParser is a simple log line parser that returns
+    a date in ymd and the path.
+    """
+
     def parse_ymd(self, dt_str):
         return dt_str[:10] # Just the ymd
 
@@ -25,6 +37,12 @@ class DatePathLogLineParser(LogLineParser):
         return (dt, path)
 
 class DatePathKeyLogLineParser(DatePathLogLineParser):
+    """
+    DatePathKeyLogLineParser is a log line parser that returns
+    a date in ymd, the path, as well as the GET arg valus for
+    the specified keys.
+    """
+
     def __init__(self, keys):
         self.keys = keys
 

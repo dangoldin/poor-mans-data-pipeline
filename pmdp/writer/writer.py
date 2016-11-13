@@ -7,12 +7,20 @@ import boto3
 from abc import ABCMeta, abstractmethod
 
 class BaseSummaryWriter:
+    """
+    BaseSummaryWriter is the abstract class that handles writing/exporting
+    a generated summary.
+    """
     __metaclass__  = ABCMeta
 
     @abstractmethod
     def write_summary(self, summary): pass
 
 class CSVFileWriter(BaseSummaryWriter):
+    """
+    CSVFileWriter is an implementation that writes a summary to a CSV file
+    """
+
     def __init__(self, fn):
         self.fn = fn
 
@@ -24,6 +32,11 @@ class CSVFileWriter(BaseSummaryWriter):
             w.writerows([i + (cnt,) for i, cnt in summary.iteritems()])
 
 class S3CSVFileWriter(BaseSummaryWriter):
+    """
+    S3CSVFileWriter is an implementation that writes a summary to a CSV file
+    and uploads it to S3
+    """
+
     def __init__(self, bucket, key):
         self.bucket = bucket
         self.key = key
