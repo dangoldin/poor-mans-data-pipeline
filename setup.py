@@ -4,12 +4,12 @@ from distutils.core import setup
 setup(
   name = 'pmdp',
   packages = ['pmdp'],
-  version = '0.2',
+  version = '0.3',
   description = 'A poor man\'s data pipeline',
   author = 'Dan Goldin',
   author_email = 'dangoldin@gmail.com',
   url = 'https://github.com/dangoldin/poor-mans-data-pipeline',
-  download_url = 'https://github.com/dangoldin/poor-mans-data-pipeline/tarball/0.2',
+  download_url = 'https://github.com/dangoldin/poor-mans-data-pipeline/tarball/0.3',
   keywords = ['data', 'data-pipeline'],
   classifiers = [],
 )
